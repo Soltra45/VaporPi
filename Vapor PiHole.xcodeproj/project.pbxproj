@@ -3,27 +3,39 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42EF5D5D4B6F91212DB77CA0 /* Pods_Vapor_PiHole.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48E82C7C67867A2BFBDC74D /* Pods_Vapor_PiHole.framework */; };
 		C61610C1247C6EB0008AE273 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61610C0247C6EB0008AE273 /* AppDelegate.swift */; };
 		C61610C3247C6EB0008AE273 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61610C2247C6EB0008AE273 /* SceneDelegate.swift */; };
-		C61610C5247C6EB0008AE273 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61610C4247C6EB0008AE273 /* ContentView.swift */; };
 		C61610C7247C6EB2008AE273 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C61610C6247C6EB2008AE273 /* Assets.xcassets */; };
 		C61610CA247C6EB2008AE273 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C61610C9247C6EB2008AE273 /* Preview Assets.xcassets */; };
 		C61610CD247C6EB2008AE273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C61610CB247C6EB2008AE273 /* LaunchScreen.storyboard */; };
+		C61610D9247EF2A9008AE273 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61610D8247EF2A9008AE273 /* ActivityIndicator.swift */; };
+		C61610DB247EF2E5008AE273 /* PiHoleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61610DA247EF2E5008AE273 /* PiHoleInfo.swift */; };
+		C61610DD247EF31E008AE273 /* PiHoleStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61610DC247EF31E008AE273 /* PiHoleStats.swift */; };
+		C61610DF247EF364008AE273 /* ApiManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61610DE247EF364008AE273 /* ApiManagement.swift */; };
+		C61610E32480AFC9008AE273 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61610E22480AFC9008AE273 /* NotificationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04F73711D4BDF026C11AC52D /* Pods-Vapor PiHole.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vapor PiHole.release.xcconfig"; path = "Target Support Files/Pods-Vapor PiHole/Pods-Vapor PiHole.release.xcconfig"; sourceTree = "<group>"; };
+		5A4DECBDE429C1596FB18461 /* Pods-Vapor PiHole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vapor PiHole.debug.xcconfig"; path = "Target Support Files/Pods-Vapor PiHole/Pods-Vapor PiHole.debug.xcconfig"; sourceTree = "<group>"; };
 		C61610BD247C6EB0008AE273 /* Vapor PiHole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vapor PiHole.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61610C0247C6EB0008AE273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C61610C2247C6EB0008AE273 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C61610C4247C6EB0008AE273 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C61610C6247C6EB2008AE273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C61610C9247C6EB2008AE273 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C61610CC247C6EB2008AE273 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C61610CE247C6EB2008AE273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C61610D8247EF2A9008AE273 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		C61610DA247EF2E5008AE273 /* PiHoleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiHoleInfo.swift; sourceTree = "<group>"; };
+		C61610DC247EF31E008AE273 /* PiHoleStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiHoleStats.swift; sourceTree = "<group>"; };
+		C61610DE247EF364008AE273 /* ApiManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManagement.swift; sourceTree = "<group>"; };
+		C61610E22480AFC9008AE273 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		D48E82C7C67867A2BFBDC74D /* Pods_Vapor_PiHole.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Vapor_PiHole.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +43,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42EF5D5D4B6F91212DB77CA0 /* Pods_Vapor_PiHole.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		177A49AD386344647BCAC4D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A4DECBDE429C1596FB18461 /* Pods-Vapor PiHole.debug.xcconfig */,
+				04F73711D4BDF026C11AC52D /* Pods-Vapor PiHole.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7333E02F7BFFDFED1C271B28 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D48E82C7C67867A2BFBDC74D /* Pods_Vapor_PiHole.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C61610B4247C6EB0008AE273 = {
 			isa = PBXGroup;
 			children = (
 				C61610BF247C6EB0008AE273 /* Vapor PiHole */,
 				C61610BE247C6EB0008AE273 /* Products */,
+				177A49AD386344647BCAC4D5 /* Pods */,
+				7333E02F7BFFDFED1C271B28 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,7 +90,11 @@
 			children = (
 				C61610C0247C6EB0008AE273 /* AppDelegate.swift */,
 				C61610C2247C6EB0008AE273 /* SceneDelegate.swift */,
-				C61610C4247C6EB0008AE273 /* ContentView.swift */,
+				C61610DC247EF31E008AE273 /* PiHoleStats.swift */,
+				C61610DA247EF2E5008AE273 /* PiHoleInfo.swift */,
+				C61610E22480AFC9008AE273 /* NotificationView.swift */,
+				C61610D8247EF2A9008AE273 /* ActivityIndicator.swift */,
+				C61610DE247EF364008AE273 /* ApiManagement.swift */,
 				C61610C6247C6EB2008AE273 /* Assets.xcassets */,
 				C61610CB247C6EB2008AE273 /* LaunchScreen.storyboard */,
 				C61610CE247C6EB2008AE273 /* Info.plist */,
@@ -82,9 +118,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C61610D1247C6EB2008AE273 /* Build configuration list for PBXNativeTarget "Vapor PiHole" */;
 			buildPhases = (
+				11CF99833EC74F964908DC6B /* [CP] Check Pods Manifest.lock */,
 				C61610B9247C6EB0008AE273 /* Sources */,
 				C61610BA247C6EB0008AE273 /* Frameworks */,
 				C61610BB247C6EB0008AE273 /* Resources */,
+				6372640EDAA01AC23975F0F4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,14 +179,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		11CF99833EC74F964908DC6B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Vapor PiHole-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6372640EDAA01AC23975F0F4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vapor PiHole/Pods-Vapor PiHole-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Vapor PiHole/Pods-Vapor PiHole-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Vapor PiHole/Pods-Vapor PiHole-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C61610B9247C6EB0008AE273 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C61610DB247EF2E5008AE273 /* PiHoleInfo.swift in Sources */,
+				C61610D9247EF2A9008AE273 /* ActivityIndicator.swift in Sources */,
+				C61610E32480AFC9008AE273 /* NotificationView.swift in Sources */,
 				C61610C1247C6EB0008AE273 /* AppDelegate.swift in Sources */,
 				C61610C3247C6EB0008AE273 /* SceneDelegate.swift in Sources */,
-				C61610C5247C6EB0008AE273 /* ContentView.swift in Sources */,
+				C61610DF247EF364008AE273 /* ApiManagement.swift in Sources */,
+				C61610DD247EF31E008AE273 /* PiHoleStats.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +366,7 @@
 		};
 		C61610D2247C6EB2008AE273 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A4DECBDE429C1596FB18461 /* Pods-Vapor PiHole.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +387,7 @@
 		};
 		C61610D3247C6EB2008AE273 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04F73711D4BDF026C11AC52D /* Pods-Vapor PiHole.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
