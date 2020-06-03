@@ -27,6 +27,9 @@ struct PiHoleInfo: View {
     @State var notificationMessage = ""
     @State var notificationColor: Color = Color.red
     
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         ZStack {
         NavigationView {
@@ -37,27 +40,51 @@ struct PiHoleInfo: View {
                             -UIScreen.main.bounds.height)
                             .animation(.interpolatingSpring(mass: 1.0, stiffness: 100, damping: 17, initialVelocity: 0))
                         
-                        Color.white
-                            .edgesIgnoringSafeArea(.all)
-                        TextField("IP Address", text: $serverInfo.ipAddress)
+                        Spacer()
+                            .frame(height: UIScreen.main.bounds.height/3)
+                        
+                        if (colorScheme == .dark) {
+                            TextField("IP Address", text: $serverInfo.ipAddress)
+                            .font(.title)
+                            .padding(.all)
+                            .foregroundColor(Color.white)
+                            .background(Color(red: 72/255, green: 72/255, blue: 74/255))
+                            .frame(maxWidth: 350, maxHeight: 40)
+                            .cornerRadius(15)
+                        }
+                        else {
+                            TextField("IP Address", text: $serverInfo.ipAddress)
+                            .font(.title)
+                            .padding(.all)
+                            .foregroundColor(Color.white)
+                            .background(Color(red: 239/255, green: 243/255, blue: 244/255))
+                            .frame(maxWidth: 350, maxHeight: 40)
+                            .cornerRadius(15)
+                        }
+                        
+                        
+                        Spacer()
+                            .frame(height: 20)
+                        
+                        if (colorScheme == .dark) {
+                            TextField("API Key", text: $serverInfo.apiKey)
+                            .font(.title)
+                            .padding(.all)
+                            .background(Color(red: 72/255, green: 72/255, blue: 74/255))
+                            .frame(maxWidth: 350, maxHeight: 40)
+                            .cornerRadius(15)
+                        }
+                        else {
+                            TextField("API Key", text: $serverInfo.apiKey)
                             .font(.title)
                             .padding(.all)
                             .background(Color(red: 239/255, green: 243/255, blue: 244/255))
                             .frame(maxWidth: 350, maxHeight: 40)
                             .cornerRadius(15)
+                        }
                         
                         Spacer()
-                            .frame(height: 20)
-                        
-                        TextField("API Key", text: $serverInfo.apiKey)
-                        .font(.title)
-                        .padding(.all)
-                        .background(Color(red: 239/255, green: 243/255, blue: 244/255))
-                        .frame(maxWidth: 350, maxHeight: 40)
-                        .cornerRadius(15)
-                        
-                        Spacer()
-                            .frame(height: 300)
+                            .frame(height: UIScreen.main.bounds.height/3)
                         
                         Button(action: {
                             self.shouldAnimate = true
@@ -71,13 +98,17 @@ struct PiHoleInfo: View {
                             }
                             ApiManagement().CheckForValidIP(ip: self.serverInfo.ipAddress, apiKey: self.serverInfo.apiKey) { checkValue in
                                 self.checkSuccess = checkValue
-                            }
-                            if (self.checkSuccess == false) {
-                                self.notificationMessage = "Server Validation Failed"
-                                self.errorShouldAnimate.toggle()
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                
+                                if (self.checkSuccess == false) {
+                                    self.notificationMessage = "Server Validation Failed"
                                     self.errorShouldAnimate.toggle()
-                                    self.shouldAnimate.toggle()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                        self.errorShouldAnimate.toggle()
+                                        self.shouldAnimate.toggle()
+                                    }
+                                }
+                                else {
+                                    self.presentationMode.wrappedValue.dismiss()
                                 }
                             }
                         }){
@@ -96,18 +127,11 @@ struct PiHoleInfo: View {
                             .background(Color.blue)
                             .cornerRadius(15)
                         }
-                        .sheet(isPresented: $checkSuccess) {PiHoleStats()}
                         
                         Spacer()
-                        .frame(height: 20)
+                            .frame(height: UIScreen.main.bounds.height/7)
                     }
                     .navigationBarTitle(Text("PiHole Info"))
-                    .onAppear {
-                        if (ApiManagement().LoadUserDefaults()) {
-                            self.checkSuccess = true
-                            
-                    }
-                }
             }
         }
     }

@@ -23,7 +23,7 @@
 /* Begin PBXFileReference section */
 		04F73711D4BDF026C11AC52D /* Pods-Vapor PiHole.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vapor PiHole.release.xcconfig"; path = "Target Support Files/Pods-Vapor PiHole/Pods-Vapor PiHole.release.xcconfig"; sourceTree = "<group>"; };
 		5A4DECBDE429C1596FB18461 /* Pods-Vapor PiHole.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vapor PiHole.debug.xcconfig"; path = "Target Support Files/Pods-Vapor PiHole/Pods-Vapor PiHole.debug.xcconfig"; sourceTree = "<group>"; };
-		C61610BD247C6EB0008AE273 /* Vapor PiHole.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Vapor PiHole.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C61610BD247C6EB0008AE273 /* VaporPi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VaporPi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61610C0247C6EB0008AE273 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C61610C2247C6EB0008AE273 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C61610C6247C6EB2008AE273 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		C61610BE247C6EB0008AE273 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C61610BD247C6EB0008AE273 /* Vapor PiHole.app */,
+				C61610BD247C6EB0008AE273 /* VaporPi.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,7 +130,7 @@
 			);
 			name = "Vapor PiHole";
 			productName = "Vapor PiHole";
-			productReference = C61610BD247C6EB0008AE273 /* Vapor PiHole.app */;
+			productReference = C61610BD247C6EB0008AE273 /* VaporPi.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -379,9 +379,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BrendanMosby.Vapor-PiHole";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = VaporPi;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -400,9 +400,9 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.BrendanMosby.Vapor-PiHole";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = VaporPi;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

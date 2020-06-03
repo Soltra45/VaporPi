@@ -17,6 +17,7 @@ struct PiHoleStats: View {
     @State var notificationColor: Color = Color.blue
     
     @State var checkSuccess = false
+    @State var checkDefaultsFailed = false
     
     @State var totalQueries = ""
     @State var queriesBlocked = ""
@@ -25,19 +26,20 @@ struct PiHoleStats: View {
     
     var body: some View {
         NavigationView {
+            
             VStack {
                 NotificationView(notificationMessage: self.notificationMessage, notificationColor: self.notificationColor)
                 .offset(y: self.notificationShouldAnimate ?
                     -UIScreen.main.bounds.height/8 :
                     -UIScreen.main.bounds.height)
                     .animation(.interpolatingSpring(mass: 1.0, stiffness: 100, damping: 17, initialVelocity: 0))
-                //Color.white
-                //    .edgesIgnoringSafeArea(.all)
                 
                 ZStack {
+                    Spacer()
+                        .frame(height: 10)
                     Rectangle()
                         .fill(Color.green)
-                        .frame(width: UIScreen.main.bounds.width - 30, height: 100)
+                        .frame(width: UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height/8)
                         .cornerRadius(15)
                     
                     VStack {
@@ -58,7 +60,7 @@ struct PiHoleStats: View {
                 ZStack {
                     Rectangle()
                         .fill(Color.blue)
-                        .frame(width: UIScreen.main.bounds.width - 30, height: 100)
+                        .frame(width: UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height/8)
                         .cornerRadius(15)
                     VStack {
                         Text("Queries Blocked")
@@ -78,7 +80,7 @@ struct PiHoleStats: View {
                 ZStack {
                     Rectangle()
                         .fill(Color.orange)
-                        .frame(width: UIScreen.main.bounds.width - 30, height: 100)
+                        .frame(width: UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height/8)
                         .cornerRadius(15)
                     VStack {
                         Text("Percent Blocked")
@@ -86,9 +88,16 @@ struct PiHoleStats: View {
                             .font(.title)
                         Spacer()
                             .frame(height: 10)
-                        Text("\(percentBlocked)%")
+                        if (percentBlocked == "-") {
+                            Text("\(percentBlocked)")
                             .foregroundColor(.white)
                             .font(.body)
+                        }
+                        else {
+                            Text("\(percentBlocked)%")
+                            .foregroundColor(.white)
+                            .font(.body)
+                        }
                     }
                 }
                 
@@ -98,7 +107,7 @@ struct PiHoleStats: View {
                 ZStack {
                     Rectangle()
                         .fill(Color.red)
-                        .frame(width: UIScreen.main.bounds.width - 30, height: 100)
+                        .frame(width: UIScreen.main.bounds.width - 30, height: UIScreen.main.bounds.height/8)
                         .cornerRadius(15)
                     VStack {
                         Text("Domains on Blocklist")
@@ -113,7 +122,7 @@ struct PiHoleStats: View {
                 }
                 
                 Spacer()
-                    .frame(minHeight: 40, maxHeight: 80)
+                    .frame(height: UIScreen.main.bounds.height/8)
                 
                 VStack {
                     Button(action: {
@@ -130,7 +139,7 @@ struct PiHoleStats: View {
                         .cornerRadius(15)
                     }
                     Spacer()
-                        .frame(height: 20)
+                        .frame(height: UIScreen.main.bounds.height/20)
                 }
                 .actionSheet(isPresented: $showingActionSheet) {
                     ActionSheet(title: Text("Disable PiHole"), message: Text("Select amount of time to disable your PiHole"), buttons: [
@@ -201,9 +210,18 @@ struct PiHoleStats: View {
                         .cancel()
                     ])
                 }
+                .sheet(isPresented: $checkDefaultsFailed) {PiHoleInfo()}
             }
             .navigationBarTitle(Text("PiHole Stats"))
+            .navigationBarItems(trailing:
+                Button("Settings") {
+                    self.checkDefaultsFailed = true
+                }
+            )
             .onAppear {
+                if (!ApiManagement().LoadUserDefaults()) {
+                    self.checkDefaultsFailed = true
+                }
                 ApiManagement().GetTotalQueries() { queriesValue in
                     self.totalQueries = queriesValue
                 }

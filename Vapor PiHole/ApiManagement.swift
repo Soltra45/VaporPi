@@ -44,12 +44,14 @@ class ApiManagement {
     
     func LoadUserDefaults() -> Bool {
         var savedSettingsValidated = false
-        let defaults = UserDefaults.standard
-        let ipAddress = defaults.string(forKey: "ipAddress")
-        let apiKey = defaults.string(forKey: "apiKey")
-        if (ipAddress != "" && apiKey != "") {
+        let ipAddress = GiveInfo().0
+        let apiKey = GiveInfo().1
+        if (ipAddress != "NULL" && apiKey != "NULL") {
             print("Saved info found!")
             savedSettingsValidated = true
+        }
+        else {
+            savedSettingsValidated = false
         }
         return savedSettingsValidated
     }
@@ -58,7 +60,7 @@ class ApiManagement {
         let defaults = UserDefaults.standard
         let ipAddress = defaults.string(forKey: "ipAddress")
         let apiKey = defaults.string(forKey: "apiKey")
-        if (ipAddress != "" && apiKey != "") {
+        if (ipAddress != nil && apiKey != nil) {
             return (ipAddress!, apiKey!)
         }
         else {
@@ -67,11 +69,10 @@ class ApiManagement {
     }
     
     func DisablePiHole(seconds: Int, completionHandler: @escaping (Bool) -> Void) {
-        let defaults = UserDefaults.standard
-        let ipAddress = defaults.string(forKey: "ipAddress")
-        let apiKey = defaults.string(forKey: "apiKey")
+        let ipAddress = GiveInfo().0
+        let apiKey = GiveInfo().1
         
-        let url = "http://\(ipAddress ?? "pi.hole")/admin/api.php?disable=(\(seconds))&auth=\(apiKey ?? "")"
+        let url = "http://\(ipAddress)/admin/api.php?disable=(\(seconds))&auth=\(apiKey)"
         
         AF.request(url).validate().responseJSON { response in
             switch response.result {
@@ -88,6 +89,7 @@ class ApiManagement {
                 }
             case .failure(let error):
                 print(error)
+                completionHandler(false)
             }
         }
     }
@@ -98,7 +100,7 @@ class ApiManagement {
         let apiKey = GiveInfo().1
         
         if (ipAddress == "NULL" || apiKey == "NULL") {
-            completionHandler("Failed")
+            completionHandler("-")
         }
         
         let url = "http://\(ipAddress)/admin/api.php?summary&auth=\(apiKey)"
@@ -123,7 +125,7 @@ class ApiManagement {
         let apiKey = GiveInfo().1
         
         if (ipAddress == "NULL" || apiKey == "NULL") {
-            completionHandler("Failed")
+            completionHandler("-")
         }
         
         let url = "http://\(ipAddress)/admin/api.php?summary&auth=\(apiKey)"
@@ -148,7 +150,7 @@ class ApiManagement {
         let apiKey = GiveInfo().1
         
         if (ipAddress == "NULL" || apiKey == "NULL") {
-            completionHandler("Failed")
+            completionHandler("-")
         }
         
         let url = "http://\(ipAddress)/admin/api.php?summary&auth=\(apiKey)"
@@ -173,7 +175,7 @@ class ApiManagement {
         let apiKey = GiveInfo().1
         
         if (ipAddress == "NULL" || apiKey == "NULL") {
-            completionHandler("Failed")
+            completionHandler("-")
         }
         
         let url = "http://\(ipAddress)/admin/api.php?summary&auth=\(apiKey)"

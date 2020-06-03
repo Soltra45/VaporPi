@@ -1,0 +1,6 @@
+framework module Pods_Vapor_PiHole {
+  umbrella header "Pods-Vapor PiHole-umbrella.h"
+
+  export *
+  module * { export * }
+}
