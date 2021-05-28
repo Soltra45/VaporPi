@@ -14,21 +14,33 @@ import SwiftyJSON
 class ApiManagement {
         
     func CheckForValidIP(ip: String, apiKey: String, completionHandler: @escaping (Bool) -> Void) {
-        let url = "http://\(ip)/admin/api.php?summary"
+        var url = URLRequest(url: URL(string: "http://\(ip)/admin/api.php?summary")!)
+        url.timeoutInterval = 15
         
         if LoadUserDefaults() {
             completionHandler(true)
         }
         else {
             AF.request(url).validate().responseJSON { response in
-                if let status = response.response?.statusCode {
-                    if (status) == 200 {
-                        self.SaveUserDefaults(ip: ip, apiKey: apiKey)
-                        completionHandler(true)
+                switch (response.result) {
+                case .success:
+                    if let status = response.response?.statusCode {
+                        if (status == 200) {
+                            self.SaveUserDefaults(ip: ip, apiKey: apiKey)
+                            completionHandler(true)
+                        }
+                        else {
+                            print("Error with response status: \(status)")
+                            completionHandler(false)
+                        }
+                    }
+                    //TODO: Fix time out not getting received here
+                case .failure(let error):
+                    if (error._code == NSURLErrorTimedOut) {
+                        print("Request timed out!")
                     }
                     else {
-                        print("Error with response status: \(status)")
-                        completionHandler(false)
+                        print("Something else broke")
                     }
                 }
             }
@@ -72,7 +84,7 @@ class ApiManagement {
         let ipAddress = GiveInfo().0
         let apiKey = GiveInfo().1
         
-        let url = "http://\(ipAddress)/admin/api.php?disable=(\(seconds))&auth=\(apiKey)"
+        let url = "http://\(ipAddress)/admin/api.php?disable=\(seconds)&auth=\(apiKey)"
         
         AF.request(url).validate().responseJSON { response in
             switch response.result {

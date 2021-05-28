@@ -32,106 +32,110 @@ struct PiHoleInfo: View {
     
     var body: some View {
         ZStack {
-        NavigationView {
-                    VStack {
-                        NotificationView(notificationMessage: self.notificationMessage, notificationColor: self.notificationColor)
+            NavigationView {
+                VStack {
+                    NotificationView(notificationMessage: self.notificationMessage, notificationColor: self.notificationColor)
                         .offset(y: self.errorShouldAnimate ?
-                            -UIScreen.main.bounds.height/8 :
-                            -UIScreen.main.bounds.height)
-                            .animation(.interpolatingSpring(mass: 1.0, stiffness: 100, damping: 17, initialVelocity: 0))
-                        
-                        Spacer()
-                            .frame(height: UIScreen.main.bounds.height/3)
-                        
-                        if (colorScheme == .dark) {
-                            TextField("IP Address", text: $serverInfo.ipAddress)
-                            .font(.title)
-                            .padding(.all)
-                            .foregroundColor(Color.white)
-                            .background(Color(red: 72/255, green: 72/255, blue: 74/255))
-                            .frame(maxWidth: 350, maxHeight: 40)
-                            .cornerRadius(15)
-                        }
-                        else {
-                            TextField("IP Address", text: $serverInfo.ipAddress)
-                            .font(.title)
-                            .padding(.all)
-                            .foregroundColor(Color.white)
-                            .background(Color(red: 239/255, green: 243/255, blue: 244/255))
-                            .frame(maxWidth: 350, maxHeight: 40)
-                            .cornerRadius(15)
-                        }
-                        
-                        
-                        Spacer()
-                            .frame(height: 20)
-                        
-                        if (colorScheme == .dark) {
-                            TextField("API Key", text: $serverInfo.apiKey)
-                            .font(.title)
+                                    -UIScreen.main.bounds.height/8 :
+                                    -UIScreen.main.bounds.height)
+                        .animation(.interpolatingSpring(mass: 1.0, stiffness: 100, damping: 17, initialVelocity: 0))
+                    
+                    Spacer()
+                        .frame(height: UIScreen.main.bounds.height/3)
+                    
+                    if (colorScheme == .dark) {
+                        TextField("IP Address", text: $serverInfo.ipAddress)
+                            .font(.headline)
                             .padding(.all)
                             .background(Color(red: 72/255, green: 72/255, blue: 74/255))
-                            .frame(maxWidth: 350, maxHeight: 40)
-                            .cornerRadius(15)
-                        }
-                        else {
-                            TextField("API Key", text: $serverInfo.apiKey)
-                            .font(.title)
+                            .frame(minWidth: 300, idealWidth: 320, maxWidth: 350, minHeight: 30, idealHeight: 40, maxHeight: 50, alignment: .center)
+                            .cornerRadius(10)
+                    }
+                    else {
+                        TextField("IP Address", text: $serverInfo.ipAddress)
+                            .font(.headline)
                             .padding(.all)
                             .background(Color(red: 239/255, green: 243/255, blue: 244/255))
-                            .frame(maxWidth: 350, maxHeight: 40)
-                            .cornerRadius(15)
+                            .frame(minWidth: 300, idealWidth: 320, maxWidth: 350, minHeight: 30, idealHeight: 40, maxHeight: 50, alignment: .center)
+                            .cornerRadius(10)
+                    }
+                    
+                    
+                    Spacer()
+                        .frame(height: 20)
+                    
+                    if (colorScheme == .dark) {
+                        TextField("API Key", text: $serverInfo.apiKey)
+                            .font(.headline)
+                            .padding(.all)
+                            .background(Color(red: 72/255, green: 72/255, blue: 74/255))
+                            .frame(minWidth: 300, idealWidth: 320, maxWidth: 350, minHeight: 30, idealHeight: 40, maxHeight: 50, alignment: .center)
+                            .cornerRadius(10)
+                    }
+                    else {
+                        TextField("API Key", text: $serverInfo.apiKey)
+                            .font(.headline)
+                            .padding(.all)
+                            .background(Color(red: 239/255, green: 243/255, blue: 244/255))
+                            .frame(minWidth: 300, idealWidth: 320, maxWidth: 350, minHeight: 30, idealHeight: 40, maxHeight: 50, alignment: .center)
+                            .cornerRadius(10)
+                    }
+                    
+                    Spacer()
+                        .frame(height: UIScreen.main.bounds.height/3)
+                    
+                    Button(action: {
+                        self.shouldAnimate = true
+                        if (self.serverInfo.ipAddress == "" || self.serverInfo.apiKey == "") {
+                            self.notificationMessage = "Empty Field"
+                            self.errorShouldAnimate.toggle()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                self.errorShouldAnimate.toggle()
+                                self.shouldAnimate.toggle()
+                            }
                         }
-                        
-                        Spacer()
-                            .frame(height: UIScreen.main.bounds.height/3)
-                        
-                        Button(action: {
-                            self.shouldAnimate = true
-                            if (self.serverInfo.ipAddress == "" || self.serverInfo.apiKey == "") {
-                                self.notificationMessage = "Empty Field"
+                        ApiManagement().CheckForValidIP(ip: self.serverInfo.ipAddress, apiKey: self.serverInfo.apiKey) { checkValue in
+                            self.checkSuccess = checkValue
+                            
+                            if (self.checkSuccess == false) {
+                                self.notificationMessage = "Server Validation Failed"
                                 self.errorShouldAnimate.toggle()
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                     self.errorShouldAnimate.toggle()
                                     self.shouldAnimate.toggle()
                                 }
                             }
-                            ApiManagement().CheckForValidIP(ip: self.serverInfo.ipAddress, apiKey: self.serverInfo.apiKey) { checkValue in
-                                self.checkSuccess = checkValue
-                                
-                                if (self.checkSuccess == false) {
-                                    self.notificationMessage = "Server Validation Failed"
-                                    self.errorShouldAnimate.toggle()
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                        self.errorShouldAnimate.toggle()
-                                        self.shouldAnimate.toggle()
-                                    }
-                                }
-                                else {
-                                    self.presentationMode.wrappedValue.dismiss()
-                                }
+                            else {
+                                self.presentationMode.wrappedValue.dismiss()
                             }
-                        }){
-                            HStack {
-                                if (shouldAnimate) {
-                                    ActivityIndicator(shouldAnimate: self.$shouldAnimate)
-                                }
-                                else {
-                                    Text("Check")
-                                    .font(.body)
-                                }
-                            }
-                            .padding()
-                            .frame(width: UIScreen.main.bounds.width - 30, height: 50.0)
-                            .foregroundColor(.white)
-                            .background(Color.blue)
-                            .cornerRadius(15)
                         }
-                        
-                        Spacer()
-                            .frame(height: UIScreen.main.bounds.height/7)
+                    }){
+                        HStack {
+                            if (shouldAnimate) {
+                                ActivityIndicator(shouldAnimate: self.$shouldAnimate)
+                            }
+                            else {
+                                Text("Check")
+                                    .font(.body)
+                            }
+                        }
+                        .padding()
+                        .frame(width: UIScreen.main.bounds.width - 30, height: 50.0)
+                        .foregroundColor(.white)
+                        .background(Color.blue)
+                        .cornerRadius(15)
                     }
-                    .navigationBarTitle(Text("PiHole Info"))
+                    
+                    Spacer()
+                        .frame(height: UIScreen.main.bounds.height/5)
+                }
+                .navigationBarTitle(Text("PiHole Info"))
+                .navigationBarItems(trailing: Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Cancel")
+                }))
+                
             }
         }
     }
